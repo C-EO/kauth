@@ -86,6 +86,23 @@ if(NOT KAUTH_BUILD_CODEGENERATOR_ONLY)
         DESTINATION ${KAUTHCORE_INSTALL_INCLUDEDIR}/KAuth # C++ namespace
         COMPONENT Devel
     )
+
+    ecm_add_installed_library_check(KF6AuthCore
+        PACKAGE_NAME "KF6Auth"
+        PACKAGE_TARGET_NAMESPACE "KF6::"
+    )
+
+    ecm_installed_library_check_include_strings(KF6AuthCore
+        HEADERS ${KAuthCore_CamelCase_HEADERS}
+        PREFIX KAuth
+    )
+    ecm_installed_library_check_cmake_variable(KF6AuthCore
+        NAME KAUTH_BACKEND_NAME
+        VALUE ${KAUTH_BACKEND_NAME}
+    )
+    ecm_installed_library_check_version_preprocessor_macros(KF6AuthCore
+        PREFIX KAUTH
+    )
 endif()
 
 # KAuth policy generator executable
